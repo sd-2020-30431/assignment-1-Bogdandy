@@ -82,9 +82,9 @@
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="passwordField" max="32767" attributes="0"/>
                                       <Component id="phoneNumberField" max="32767" attributes="0"/>
-                                      <Component id="verificationPasswordField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="verificatePasswordField" max="32767" attributes="0"/>
+                                      <Component id="passwordField" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -128,15 +128,15 @@
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="passwordField" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="passwordField" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="verificationPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="verificatePasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="signUpButton" min="-2" max="-2" attributes="0"/>
@@ -157,8 +157,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="passwordField">
         </Component>
         <Component class="javax.swing.JTextField" name="phoneNumberField">
         </Component>
@@ -182,8 +180,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="emailAddressField">
         </Component>
-        <Component class="javax.swing.JTextField" name="verificationPasswordField">
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -198,6 +194,10 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Registration Form"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="verificatePasswordField">
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="passwordField">
         </Component>
       </SubComponents>
     </Container>

@@ -3,7 +3,7 @@ package presentation;
 import business.*;
 
 public class LogInForm extends javax.swing.JFrame {
-    private requestService req = null;
+    private RequestService req = null;
     private boolean check;
     
     public LogInForm() {
@@ -134,8 +134,8 @@ public class LogInForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
-        req = new userDataRequest();
-        check = req.requestLogIn(usernameField.getText(),passwordField.getText());
+        req = new LogInRequest();
+        check = req.userRequest(new userDataStructure(usernameField.getText(),passwordField.getText(),"",""),"");
         
         if(check){
             setVisible(false);

@@ -3,7 +3,7 @@ package presentation;
 import business.*;
 
 public class RegistrationForm extends javax.swing.JFrame {
-    private requestService req = null;
+    private RequestService req = null;
     private userDataStructure data;
     
     public RegistrationForm() {
@@ -21,16 +21,16 @@ public class RegistrationForm extends javax.swing.JFrame {
         usernameField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        passwordField = new javax.swing.JTextField();
         phoneNumberField = new javax.swing.JTextField();
         signUpButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         emailAddressField = new javax.swing.JTextField();
-        verificationPasswordField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        verificatePasswordField = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registration Screen");
@@ -85,9 +85,9 @@ public class RegistrationForm extends javax.swing.JFrame {
                                     .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(passwordField)
                                     .addComponent(phoneNumberField)
-                                    .addComponent(verificationPasswordField))))
+                                    .addComponent(verificatePasswordField)
+                                    .addComponent(passwordField))))
                         .addGap(16, 16, 16))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -117,14 +117,14 @@ public class RegistrationForm extends javax.swing.JFrame {
                     .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(verificationPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(verificatePasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(signUpButton)
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -152,8 +152,8 @@ public class RegistrationForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
-       req = new userDataRequest();
-       req.requestSignUp(new userDataStructure(usernameField.getText(),passwordField.getText(),emailAddressField.getText(),phoneNumberField.getText()));
+       req = new SignUpRequest();
+       req.userRequest(new userDataStructure(usernameField.getText(),passwordField.getText(),emailAddressField.getText(),phoneNumberField.getText()), verificatePasswordField.getText());
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     /**
@@ -201,10 +201,10 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField passwordField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField phoneNumberField;
     private javax.swing.JButton signUpButton;
     private javax.swing.JTextField usernameField;
-    private javax.swing.JTextField verificationPasswordField;
+    private javax.swing.JPasswordField verificatePasswordField;
     // End of variables declaration//GEN-END:variables
 }
