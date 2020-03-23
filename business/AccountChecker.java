@@ -1,23 +1,24 @@
 package business;
 
-import java.util.regex.Matcher; 
 import java.util.regex.Pattern; 
 
 public class AccountChecker {
-    private userDataStructure data;
+    private UserDataStructure data;
     private String passCheck = null;
     
-    public AccountChecker(userDataStructure data, String passCheck){
+    public AccountChecker(UserDataStructure data, String passCheck){
         this.data = data;
         this.passCheck = passCheck;
     }
     
-    public AccountChecker(userDataStructure data){
+    public AccountChecker(UserDataStructure data){
         this.data = data;
     }
     
     public boolean checkPassword(){
         if(data.getPassword().compareTo("")==0 || data.getPassword().length()<5 || data.getPassword().length()>80)
+            return false;
+        if(data.getPassword().compareTo(passCheck)!=0)
             return false;
         return true;
     }
@@ -35,9 +36,7 @@ public class AccountChecker {
     }
     
     public boolean checkUsername(){
-        if(data.getUsername().compareTo("")==0 || data.getUsername().length()<5 || data.getUsername().length()>80)
-            return false;
-        return true;
+        return !(data.getUsername().compareTo("")==0 || data.getUsername().length()<5 || data.getUsername().length()>80);
     }
     
     public boolean checkPhoneNumber(){

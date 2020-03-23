@@ -10,7 +10,7 @@ public class LogInRequest implements RequestService{
     PreparedStatement pst;
     
     @Override
-    public boolean userRequest(userDataStructure data, String password){
+    public boolean userRequest(UserDataStructure data, String password){
         boolean check = false;
         String sql = "select * from userdata where Username = ? and Password = ?"; 
         

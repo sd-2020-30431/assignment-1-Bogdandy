@@ -10,7 +10,7 @@ public class SignUpRequest implements RequestService {
     PreparedStatement pst;
     
     @Override
-    public boolean userRequest(userDataStructure data, String passCheck) {
+    public boolean userRequest(UserDataStructure data, String passCheck) {
         String sql = "Insert into userdata values (idUser, ?, ?, ?, ?)";
         AccountChecker accCheck = new AccountChecker(data);
         
