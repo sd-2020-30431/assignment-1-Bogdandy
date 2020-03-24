@@ -152,7 +152,7 @@ public class RegistrationForm extends javax.swing.JFrame {
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
        req = new SignUpRequest();
-       req.userRequest(new UserDataStructure(usernameField.getText(),passwordField.getText(),emailAddressField.getText(),phoneNumberField.getText()), verificatePasswordField.getText());
+       req.userRequest(new UserDataStructure(usernameField.getText(),passwordField.getText(),emailAddressField.getText(),phoneNumberField.getText(), verificatePasswordField.getText()));
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     /**

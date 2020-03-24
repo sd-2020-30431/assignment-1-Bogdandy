@@ -10,7 +10,7 @@ public class LogInRequest implements RequestService{
     PreparedStatement pst;
     
     @Override
-    public boolean userRequest(UserDataStructure data, String password){
+    public boolean userRequest(UserDataStructure data){
         boolean check = false;
         String sql = "select * from userdata where Username = ? and Password = ?"; 
         
@@ -34,6 +34,21 @@ public class LogInRequest implements RequestService{
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error!\n" + ex);
         }
-        return check;
+        finally {
+            try {
+                // Close connection
+                if (pst != null) {
+                    pst.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            finally{
+                return check;
+            }
+        }
     }
 }

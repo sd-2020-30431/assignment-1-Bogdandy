@@ -4,12 +4,6 @@ import java.util.regex.Pattern;
 
 public class AccountChecker {
     private UserDataStructure data;
-    private String passCheck = null;
-    
-    public AccountChecker(UserDataStructure data, String passCheck){
-        this.data = data;
-        this.passCheck = passCheck;
-    }
     
     public AccountChecker(UserDataStructure data){
         this.data = data;
@@ -18,7 +12,7 @@ public class AccountChecker {
     public boolean checkPassword(){
         if(data.getPassword().compareTo("")==0 || data.getPassword().length()<5 || data.getPassword().length()>80)
             return false;
-        if(data.getPassword().compareTo(passCheck)!=0)
+        if(data.getPassword().compareTo(data.getPassCheck())!=0)
             return false;
         return true;
     }

@@ -122,7 +122,7 @@ public class LogInForm extends javax.swing.JFrame {
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
         req = new LogInRequest();
-        check = req.userRequest(new UserDataStructure(usernameField.getText(),passwordField.getText(),"",""),"");
+        check = req.userRequest(new UserDataStructure(usernameField.getText(),passwordField.getText()));
         
         if(check){
             setVisible(false);
