@@ -2,7 +2,7 @@ package business;
 
 import java.util.Date;
 
-public class ItemInformation<T>{
+public class ItemInformation{
     private String itemName;
     private Integer quantity;
     private Integer caloricValue;
