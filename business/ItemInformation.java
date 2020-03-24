@@ -9,14 +9,16 @@ public class ItemInformation<T>{
     private Date purchaseDate;
     private Date expirationDate;
     private Date consumptionDate;
+    private Integer tableIndex;
     
-    public ItemInformation(String itemName, Integer quantity, Integer caloricValue, Date purchaseDate, Date expirationDate, Date consumptionDate){
+    public ItemInformation(String itemName, Integer quantity, Integer caloricValue, Date purchaseDate, Date expirationDate, Date consumptionDate, Integer tableIndex){
         this.itemName = itemName;
         this.quantity = quantity;
         this.caloricValue = caloricValue;
         this.purchaseDate = purchaseDate;
         this.expirationDate = expirationDate;
         this.consumptionDate = consumptionDate;
+        this.tableIndex = tableIndex;
     }
     
     public String getItemName(){
@@ -41,5 +43,9 @@ public class ItemInformation<T>{
     
     public Date getConsumptionDate(){
         return consumptionDate;
+    }
+    
+    public Integer getTableIndex(){
+        return tableIndex;
     }
 }

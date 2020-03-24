@@ -14,8 +14,8 @@ public class SignUpRequest implements RequestService {
         String sql = "Insert into userdata values (idUser, ?, ?, ?, ?)";
         AccountChecker accCheck = new AccountChecker(data);
         
-        if(accCheck.checkUsername() && accCheck.checkPassword() && accCheck.checkEmail() && accCheck.checkPhoneNumber())
-            try{
+        try{
+            if(accCheck.checkUsername() && accCheck.checkPasswordSignUp() && accCheck.checkEmail() && accCheck.checkPhoneNumber()){
                 pst = conn.prepareStatement(sql);
                 pst.setString(1, data.getUsername());
                 pst.setString(2, data.getPassword());
@@ -24,26 +24,28 @@ public class SignUpRequest implements RequestService {
                 pst.execute();
             
                 JOptionPane.showMessageDialog(null,"Registration successful!");
-            }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null, "Error!\n" + ex);
             }
-            finally {
-                try {
-                    // Close connection
-                    if (pst != null) {
-                        pst.close();
-                    }
-                    if (conn != null) {
-                        conn.close();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+            else{
+                JOptionPane.showMessageDialog(null,"Registration failed!\nPlease check registration credentials!\nNo empty field is allowed!\nUse a proper email address!");
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error!\n" + ex);
+        }
+        finally {
+            try {
+               // Close connection
+                if (pst != null) {
+                    pst.close();
                 }
-                finally{
-                    return true;
+                if (conn != null) {
+                    conn.close();
                 }
-            }   
-        JOptionPane.showMessageDialog(null,"Registration failed!\nPlease check registration credentials!\nNo empty field is allowed!\nUse a proper email address!");
-        return false;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            finally{
+                return false;
+            }
+        }   
     }
 }

@@ -13,19 +13,22 @@ public class LogInRequest implements RequestService{
     public boolean userRequest(UserDataStructure data){
         boolean check = false;
         String sql = "select * from userdata where Username = ? and Password = ?"; 
+        AccountChecker accCheck = new AccountChecker(data);
         
+       
         try{
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, data.getUsername());
-            pst.setString(2, data.getPassword());
-            rs = pst.executeQuery();
+            if(accCheck.checkPasswordLogIn() && accCheck.checkUsername()){
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, data.getUsername());
+                pst.setString(2, data.getPassword());
+                rs = pst.executeQuery();
             
-            if(rs.next()){
-                check = true;
-                rs.close();
-                pst.close();
+                if(rs.next()){
+                    check = true;
+                    rs.close();
+                    pst.close();
+                }
             }
-            
             if(check == false){
                 JOptionPane.showMessageDialog(null, "Incorrect Username or Password");
             }

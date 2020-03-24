@@ -9,10 +9,16 @@ public class AccountChecker {
         this.data = data;
     }
     
-    public boolean checkPassword(){
+    public boolean checkPasswordSignUp(){
         if(data.getPassword().compareTo("")==0 || data.getPassword().length()<5 || data.getPassword().length()>80)
             return false;
         if(data.getPassword().compareTo(data.getPassCheck())!=0)
+            return false;
+        return true;
+    }
+    
+    public boolean checkPasswordLogIn(){
+        if(data.getPassword().compareTo("")==0 || data.getPassword().length()<5 || data.getPassword().length()>80)
             return false;
         return true;
     }
