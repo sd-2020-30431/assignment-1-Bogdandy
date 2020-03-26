@@ -1,6 +1,5 @@
 package business;
 
-import dataacess.javaconnect;
 import java.sql.*;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -8,7 +7,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class AddItemToGroceryListRequest implements DataModificationRequestService{
-    Connection conn = javaconnect.ConnectDb();
+    //Connection conn = javaconnect.ConnectDb();
     ResultSet rs;
     PreparedStatement pst;
     
@@ -19,7 +18,7 @@ public class AddItemToGroceryListRequest implements DataModificationRequestServi
         
         try{
             if(true){
-                pst = conn.prepareStatement(sql);
+               // pst = conn.prepareStatement(sql);
                 pst.setInt(1, data.getTableIndex());
                 pst.setString(2, data.getItemName());
                 pst.setInt(3, data.getQuantity());
@@ -46,9 +45,9 @@ public class AddItemToGroceryListRequest implements DataModificationRequestServi
                 if (pst != null) {
                     pst.close();
                 }
-                if (conn != null) {
-                    conn.close();
-                }
+               // if (conn != null) {
+               //     conn.close();
+               // }
             } catch (Exception e) {
                 e.printStackTrace();
             }

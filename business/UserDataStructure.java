@@ -10,9 +10,10 @@ public class UserDataStructure {
     public UserDataStructure(String username, String password){
         this.username = username;
         this.password = password;
+        this.passCheck = password;
     }
     
-    public UserDataStructure(String username, String password, String emailAddress,String phoneNumber, String passCheck){
+    public UserDataStructure(String username, String password, String emailAddress, String phoneNumber, String passCheck){
         this.username = username;
         this.password = password;
         this.phoneNumber = phoneNumber;
@@ -25,7 +26,7 @@ public class UserDataStructure {
     }
     
     public String getPassCheck(){
-        return username;
+        return passCheck;
     }
     
     public String getPassword(){
