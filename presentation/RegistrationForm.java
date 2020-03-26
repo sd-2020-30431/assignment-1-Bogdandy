@@ -1,6 +1,7 @@
 package presentation;
 
 import business.*;
+import javax.swing.JOptionPane;
 
 public class RegistrationForm extends javax.swing.JFrame {
     private RequestService req = null;
@@ -152,7 +153,12 @@ public class RegistrationForm extends javax.swing.JFrame {
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
        req = new SignUpRequest();
-       req.userRequest(new UserDataStructure(usernameField.getText(),passwordField.getText(),emailAddressField.getText(),phoneNumberField.getText(), verificatePasswordField.getText()));
+       UserDataStructure userDataStructure =new UserDataStructure(usernameField.getText(),passwordField.getText(),emailAddressField.getText(),phoneNumberField.getText(), verificatePasswordField.getText());
+       if(req.userRequest(userDataStructure)){
+           JOptionPane.showMessageDialog(null, "Registration Successful!");
+       }else{
+           JOptionPane.showMessageDialog(null, "Registration Failed!", "Warning", JOptionPane.WARNING_MESSAGE);
+       }
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     /**

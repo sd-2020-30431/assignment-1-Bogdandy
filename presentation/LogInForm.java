@@ -1,10 +1,10 @@
 package presentation;
 
 import business.*;
+import javax.swing.JOptionPane;
 
 public class LogInForm extends javax.swing.JFrame {
     private RequestService req = null;
-    private boolean check;
     
     public LogInForm() {
         initComponents();
@@ -122,12 +122,15 @@ public class LogInForm extends javax.swing.JFrame {
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
         req = new LogInRequest();
-        check = req.userRequest(new UserDataStructure(usernameField.getText(),passwordField.getText()));
+        UserDataStructure userDataStructure = new UserDataStructure(usernameField.getText(),passwordField.getText());
+       
         
-        if(check){
+        if(req.userRequest(userDataStructure)){
             setVisible(false);
             GroceryListManagementForm gManagementForm = new GroceryListManagementForm();
             gManagementForm.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "LogIn Failed!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_logInButtonActionPerformed
 
