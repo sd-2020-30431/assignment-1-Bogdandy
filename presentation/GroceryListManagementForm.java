@@ -438,10 +438,21 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
     private void addItemsToGroceryListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemsToGroceryListActionPerformed
         request = new AddItemToGroceryListRequest();
-        request.requestModification(new ItemInformation(itemNameField.getText(), 
-                Integer.parseInt(quantityField.getText()),  Integer.parseInt(calorieValueField.getText()), 
-                purchaseDateChooser.getSelectedDate().getTime(), expirationDateChooser.getSelectedDate().getTime(), 
-                expirationDateChooser.getSelectedDate().getTime(), grocerylistId));
+        
+        try{
+            ItemInformation itemInformation = new ItemInformation(itemNameField.getText(), 
+                    Integer.parseInt(quantityField.getText()),  Integer.parseInt(calorieValueField.getText()), 
+                    purchaseDateChooser.getSelectedDate().getTime(), expirationDateChooser.getSelectedDate().getTime(), 
+                    expirationDateChooser.getSelectedDate().getTime(), grocerylistId);
+            
+                if(request.requestModification(itemInformation)){
+                    JOptionPane.showMessageDialog(null, "Item Added Successfully!");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Item couldn't be added!\nCheck item fields!", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Item couldn't be added!\nCheck item fields!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_addItemsToGroceryListActionPerformed
 
     private void modifyItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyItemButtonActionPerformed
