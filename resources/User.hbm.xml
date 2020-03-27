@@ -45,7 +45,7 @@ Contributor(s):
          This class contains the user detail. 
       </meta>
       
-      <id name = "idUser" type = "int" column = "idUser">
+      <id name = "idUser" type = "long" column = "idUser">
          <generator class="native"/>
       </id>
       
@@ -54,5 +54,12 @@ Contributor(s):
       <property name = "EmailAddress" column = "EmailAddress" type = "string"/>
       <property name = "PhoneNumber" column = "PhoneNumber" type = "string"/>
       
+      <set name="GroceryItem" table="grocerylist" 
+		inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUser" not-null="true" />
+            </key>
+            <one-to-many class="dataaccess.GroceryItem" />
+        </set>
    </class>
 </hibernate-mapping>

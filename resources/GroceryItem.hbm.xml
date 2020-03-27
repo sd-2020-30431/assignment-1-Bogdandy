@@ -45,11 +45,12 @@ Contributor(s):
          This class contains the user detail. 
       </meta>
       
-      <id name = "idGroceryList" type = "int" column = "idGroceryList">
+      <id name = "idGroceryList" type = "long" column = "idGroceryList">
          <generator class="native"/>
       </id>
       
       <property name = "ListNo" column = "ListNo" type = "int"/>
+      <property name = "idUserGrocery" column = "idUserGrocery" type = "long"/>
       <property name = "ItemName" column = "ItemName" type = "string"/>
       <property name = "Quantity" column = "Quantity" type = "int"/>
       <property name = "CaloricValue" column = "CaloricValue" type = "int"/>
