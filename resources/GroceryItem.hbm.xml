@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
@@ -39,15 +39,23 @@ made subject to such option by the copyright holder.
 
 Contributor(s):
 -->
-<hibernate-configuration>
-  <session-factory>
-    <property name="hibernate.dialect"> org.hibernate.dialect.MySQLDialect </property>
-    <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/wateless</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">J@lly98@7</property>
-    <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="User.hbm.xml"/>
-    <mapping resource="GroceryItem.hbm.xml"/>
-  </session-factory>
-</hibernate-configuration>
+<hibernate-mapping>
+  <class name="dataaccess.GroceryItem" table="grocerylist">
+      <meta attribute = "class-description">
+         This class contains the user detail. 
+      </meta>
+      
+      <id name = "idGroceryList" type = "int" column = "idGroceryList">
+         <generator class="native"/>
+      </id>
+      
+      <property name = "ListNo" column = "ListNo" type = "int"/>
+      <property name = "ItemName" column = "ItemName" type = "string"/>
+      <property name = "Quantity" column = "Quantity" type = "int"/>
+      <property name = "CaloricValue" column = "CaloricValue" type = "int"/>
+      <property name = "PurchaseDate" column = "PurchaseDate" type = "date"/>
+      <property name = "ExpirationDate" column = "ExpirationDate" type = "date"/>
+      <property name = "ConsumptionDate" column = "ConsumptionDate" type = "date"/>
+      
+   </class>
+</hibernate-mapping>
