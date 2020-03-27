@@ -11,13 +11,15 @@ public class GroceryItem{
     @Column (name = "idGroceryList")
     @GeneratedValue(generator = "incrementator")
     @GenericGenerator(name = "incrementator", strategy = "increment")
-    private int idGroceryList;
+    private Long  idGroceryList;
     
-     public Integer getIdGroceryList(){
+    private User u;
+ 
+    public Long  getIdGroceryList(){
         return idGroceryList;
     }
     
-    public void setIdGroceryList(int idGroceryList){
+    public void setIdGroceryList(Long  idGroceryList){
         this.idGroceryList = idGroceryList;
     }
     
@@ -41,6 +43,16 @@ public class GroceryItem{
     
     public void setListNo(int listNo){
         this.listNo = listNo;
+    }
+    @Column (name = "idUserGroceryList")
+    private Long idUserGroceryList;
+    
+    public Long getIdUserGroceryList(){
+        return idUserGroceryList;
+    }
+    
+    public void setListNo(Long idUserGroceryList){
+        this.idUserGroceryList = idUserGroceryList;
     }
     
     @Column(name = "Quantity")
@@ -97,5 +109,30 @@ public class GroceryItem{
     
     public void setConsumptionDate(Date consumptionDate){
         this.consumptionDate = consumptionDate;
+    }
+    
+    
+    @Column(name = "idUserGrocery")
+    private Long idUserGrocery;
+    public long getIdUserGrocery(){
+        return idUserGrocery;
+    }
+   
+    public void setIdUserGrocery(long idUserGrocery ){
+        this.idUserGrocery = idUserGrocery;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GroceryItem )) return false;
+        return idGroceryList != 0 && idGroceryList.equals(((GroceryItem) o).getIdGroceryList());
+    }
+ 
+    @Override
+    public int hashCode() {
+        int tmp = 0;
+        tmp = ( idGroceryList + ItemName ).hashCode();
+        return tmp;
     }
 }

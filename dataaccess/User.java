@@ -1,22 +1,25 @@
 package dataaccess;
 
+import java.util.*;
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity
+@Entity(name = "User")
 @Table(name ="userdata")
 public class User {
     @Id
     @Column(name = "idUser")
     @GeneratedValue(generator = "incrementator")
     @GenericGenerator(name = "incrementator", strategy = "increment")
-    private int idUser;
+    private Long  idUser;
     
-    public int getIdUser(){
+    private Set groceryItems;
+        
+    public Long getIdUser(){
         return idUser;
     }
     
-    public void setIdUser(int idUser){
+    public void setIdUser(Long idUser){
         this.idUser = idUser;
     }
 
@@ -61,6 +64,14 @@ public class User {
     
     public void setPhoneNumber(String phoneNumber){
         this.phoneNumber = phoneNumber;
+    }
+    
+    public Set getGroceryItem(){
+        return groceryItems;
+    }
+   
+    public void setGroceryItem(Set groceryItems ){
+        this.groceryItems = groceryItems;
     }
 }
 
