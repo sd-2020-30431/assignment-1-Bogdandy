@@ -4,13 +4,19 @@ import business.*;
 import javax.swing.JOptionPane;
 
 public class GroceryListManagementForm extends javax.swing.JFrame {
+    private UserDataStructure data;
     DataModificationRequestService request = null;
     private int grocerylistId = 1;
     
     public GroceryListManagementForm() {
         initComponents();
+        userGroceryList.setModel(new TableWork(data).populateRequest()); 
     }
 
+    public void setup(UserDataStructure data){
+        this.data = data;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

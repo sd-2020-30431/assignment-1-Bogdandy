@@ -128,6 +128,7 @@ public class LogInForm extends javax.swing.JFrame {
         if(req.userRequest(userDataStructure)){
             setVisible(false);
             GroceryListManagementForm gManagementForm = new GroceryListManagementForm();
+            gManagementForm.setup(userDataStructure);
             gManagementForm.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "LogIn Failed!", "Warning", JOptionPane.WARNING_MESSAGE);
