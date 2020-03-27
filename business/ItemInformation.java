@@ -21,6 +21,10 @@ public class ItemInformation{
         this.tableIndex = tableIndex;
     }
     
+    public Integer getTableIndex(){
+        return tableIndex;
+    }
+    
     public String getItemName(){
         return itemName;
     }
@@ -43,9 +47,5 @@ public class ItemInformation{
     
     public Date getConsumptionDate(){
         return consumptionDate;
-    }
-    
-    public Integer getTableIndex(){
-        return tableIndex;
     }
 }

@@ -5,8 +5,9 @@ import javax.swing.JOptionPane;
 public class ModifyItemInformationRequest implements DataModificationRequestService{
 
     @Override
-    public void requestModification(ItemInformation data) {
+    public boolean requestModification(ItemInformation data) {
         JOptionPane.showMessageDialog(null, "MERGE2");
+        return false;
     }
     
 }
