@@ -2,30 +2,33 @@ package dataaccess;
 
 import javax.persistence.*;
 import org.hibernate.HibernateException;
-import business.UserDataStructure;
+import business.ItemInformation;
 
-public class SignUpQuery {
-    private UserDataStructure data;
+public class ItemInformationInsertionQuery {
+    private ItemInformation data;
     
-    public SignUpQuery(UserDataStructure data){
+    public ItemInformationInsertionQuery(ItemInformation data){
         this.data = data;
     }
     
     public boolean doQuery(){
         boolean successful = false;
-        User u = new User();
+        GroceryItem groceryItem = new GroceryItem();
        
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
        
-        u.setUsername(data.getUsername());
-        u.setPassword(data.getPassword());
-        u.setEmailAddress(data.getEmailAddress());
-        u.setPhoneNumber(data.getPhoneNumber());
+        groceryItem.setTableIndex(data.getTableIndex());
+        groceryItem.setItemName(data.getItemName());
+        groceryItem.setQuantity(data.getQuantity());
+        groceryItem.setCaloricValue(data.getCaloricValue());
+        groceryItem.setPurchaseDate(data.getPurchaseDate());
+        groceryItem.setExpirationDate(data.getExpirationDate());
+        groceryItem.setConsumptionDate(data.getConsumptionDate());
         
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         
-        entityManager.persist(u);
+        entityManager.persist(groceryItem);
        
         try{
             entityManager.getTransaction().commit();
@@ -39,5 +42,4 @@ public class SignUpQuery {
         return successful;
         
     }
-        
 }

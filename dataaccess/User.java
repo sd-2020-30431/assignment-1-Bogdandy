@@ -53,13 +53,13 @@ public class User {
     }
     
     @Column(name = "PhoneNumber")
-    private int phoneNumber;
+    private String phoneNumber;
     
-    public int getPhoneNumber(){
+    public String getPhoneNumber(){
         return phoneNumber;
     }
     
-    public void setPhoneNumber(int phoneNumber){
+    public void setPhoneNumber(String phoneNumber){
         this.phoneNumber = phoneNumber;
     }
 }
