@@ -12,6 +12,7 @@ public class GroceryItem{
     @GeneratedValue(generator = "incrementator")
     @GenericGenerator(name = "incrementator", strategy = "increment")
     private int idGroceryList;
+    
      public Integer getIdGroceryList(){
         return idGroceryList;
     }
@@ -22,6 +23,7 @@ public class GroceryItem{
     
     @Column(name = "ItemName")
     private String ItemName;
+    
     public String getItemName(){
         return ItemName;
     }
@@ -31,17 +33,19 @@ public class GroceryItem{
     }
     
     @Column (name = "ListNo")
-    private Integer tableIndex;
-    public Integer getTableIndex(){
-        return tableIndex;
+    private Integer listNo;
+    
+    public Integer getListNo(){
+        return listNo;
     }
     
-    public void setTableIndex(int tableIndex){
-        this.tableIndex = tableIndex;
+    public void setListNo(int listNo){
+        this.listNo = listNo;
     }
     
     @Column(name = "Quantity")
     private int quantity;
+    
     public int getQuantity(){
         return quantity;
     }
@@ -52,6 +56,7 @@ public class GroceryItem{
     
     @Column(name = "CaloricValue")
     private Integer caloricValue;
+    
     public Integer getCaloricValue(){
         return caloricValue;
     }
@@ -63,6 +68,7 @@ public class GroceryItem{
     
     @Column(name = "PurchaseDate")
     private Date purchaseDate;
+    
     public Date getPurchaseDate(){
         return purchaseDate;
     }
@@ -73,6 +79,7 @@ public class GroceryItem{
     
     @Column(name = "ExpirationDate")
     private Date expirationDate;
+    
     public Date getExpirationDate(){
         return expirationDate;
     }
@@ -83,6 +90,7 @@ public class GroceryItem{
     
     @Column(name = "ConsumptionDate")
     private Date consumptionDate;
+    
     public Date getConsumptionDate(){
         return consumptionDate;
     }

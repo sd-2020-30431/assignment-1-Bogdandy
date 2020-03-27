@@ -20,7 +20,7 @@ public class LogInQuery {
         try {
             factory = new Configuration().configure().buildSessionFactory();
         } catch (HibernateException ex) { 
-            System.err.println("Failed to create sessionFactory object." + ex);
+            //System.err.println("Failed to create sessionFactory object." + ex);
             throw new ExceptionInInitializerError(ex); 
         }
         
@@ -41,7 +41,7 @@ public class LogInQuery {
             tx.commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
-            e.printStackTrace(); 
+            //e.printStackTrace(); 
         } finally {
             session.close(); 
         }

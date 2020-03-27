@@ -17,7 +17,7 @@ public class ItemInformationInsertionQuery {
        
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
        
-        groceryItem.setTableIndex(data.getTableIndex());
+        groceryItem.setListNo(data.getTableIndex());
         groceryItem.setItemName(data.getItemName());
         groceryItem.setQuantity(data.getQuantity());
         groceryItem.setCaloricValue(data.getCaloricValue());
