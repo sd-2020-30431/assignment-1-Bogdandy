@@ -52,7 +52,7 @@ Contributor(s):
       <property name = "Username" column = "Username" type = "string"/>
       <property name = "Password" column = "Password" type = "string"/>
       <property name = "EmailAddress" column = "EmailAddress" type = "string"/>
-      <property name = "PhoneNumber" column = "PhoneNumber" type = "integer"/>
+      <property name = "PhoneNumber" column = "PhoneNumber" type = "string"/>
       
    </class>
 </hibernate-mapping>
