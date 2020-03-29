@@ -13,6 +13,11 @@ public class User {
     @GenericGenerator(name = "incrementator", strategy = "increment")
     private Long  idUser;
     
+    @OneToMany(
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    @JoinColumn(name = "idUser")
     private Set groceryItems;
         
     public Long getIdUser(){

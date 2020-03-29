@@ -4,7 +4,7 @@ import java.util.Date;
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity
+@Entity(name = "GroceryItem")
 @Table(name ="grocerylist")
 public class GroceryItem{
     @Id
@@ -43,16 +43,6 @@ public class GroceryItem{
     
     public void setListNo(int listNo){
         this.listNo = listNo;
-    }
-    @Column (name = "idUserGroceryList")
-    private Long idUserGroceryList;
-    
-    public Long getIdUserGroceryList(){
-        return idUserGroceryList;
-    }
-    
-    public void setListNo(Long idUserGroceryList){
-        this.idUserGroceryList = idUserGroceryList;
     }
     
     @Column(name = "Quantity")
@@ -112,14 +102,14 @@ public class GroceryItem{
     }
     
     
-    @Column(name = "idUserGrocery")
-    private Long idUserGrocery;
-    public long getIdUserGrocery(){
-        return idUserGrocery;
+    @Column(name = "idUserGroceryList")
+    private Long idUserGroceryList;
+    public long getIdUserGroceryList(){
+        return idUserGroceryList;
     }
    
-    public void setIdUserGrocery(long idUserGrocery ){
-        this.idUserGrocery = idUserGrocery;
+    public void setIdUserGroceryList(long idUserGroceryList ){
+        this.idUserGroceryList = idUserGroceryList;
     }
     
     @Override

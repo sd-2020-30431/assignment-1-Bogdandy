@@ -2,13 +2,15 @@ package dataaccess;
 
 import javax.persistence.*;
 import org.hibernate.HibernateException;
-import business.ItemInformation;
+import business.*;
 
 public class ItemInformationInsertionQuery {
-    private ItemInformation data;
+    private ItemInformation itemInformation;
+    private UserDataStructure uSD;
     
-    public ItemInformationInsertionQuery(ItemInformation data){
-        this.data = data;
+    public ItemInformationInsertionQuery(ItemInformation itemInformation, UserDataStructure uSD){
+        this.itemInformation = itemInformation;
+        this.uSD = uSD;
     }
     
     public boolean doQuery(){
@@ -17,13 +19,14 @@ public class ItemInformationInsertionQuery {
        
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("org.hibernate.tutorial.jpa");
        
-        groceryItem.setListNo(data.getTableIndex());
-        groceryItem.setItemName(data.getItemName());
-        groceryItem.setQuantity(data.getQuantity());
-        groceryItem.setCaloricValue(data.getCaloricValue());
-        groceryItem.setPurchaseDate(data.getPurchaseDate());
-        groceryItem.setExpirationDate(data.getExpirationDate());
-        groceryItem.setConsumptionDate(data.getConsumptionDate());
+        groceryItem.setListNo(itemInformation.getTableIndex());
+        groceryItem.setIdUserGroceryList(uSD.getIdUser());
+        groceryItem.setItemName(itemInformation.getItemName());
+        groceryItem.setQuantity(itemInformation.getQuantity());
+        groceryItem.setCaloricValue(itemInformation.getCaloricValue());
+        groceryItem.setPurchaseDate(itemInformation.getPurchaseDate());
+        groceryItem.setExpirationDate(itemInformation.getExpirationDate());
+        groceryItem.setConsumptionDate(itemInformation.getConsumptionDate());
         
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -32,6 +35,8 @@ public class ItemInformationInsertionQuery {
        
         try{
             entityManager.getTransaction().commit();
+            entityManager.close();
+            entityManager.flush();
             successful = true;
         }catch(HibernateException ex){
            
@@ -40,6 +45,5 @@ public class ItemInformationInsertionQuery {
             entityManagerFactory = null;
         }
         return successful;
-        
     }
 }
