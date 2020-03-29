@@ -57,7 +57,7 @@ Contributor(s):
       <set name="GroceryItem" table="grocerylist" 
 		inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idUser" not-null="true" />
+                <column name="idUserGroceryList" not-null="true" />
             </key>
             <one-to-many class="dataaccess.GroceryItem" />
         </set>

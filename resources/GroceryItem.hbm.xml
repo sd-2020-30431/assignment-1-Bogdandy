@@ -50,7 +50,7 @@ Contributor(s):
       </id>
       
       <property name = "ListNo" column = "ListNo" type = "int"/>
-      <property name = "idUserGrocery" column = "idUserGrocery" type = "long"/>
+      <property name = "idUserGroceryList" column = "idUserGroceryList" type = "long"/>
       <property name = "ItemName" column = "ItemName" type = "string"/>
       <property name = "Quantity" column = "Quantity" type = "int"/>
       <property name = "CaloricValue" column = "CaloricValue" type = "int"/>
