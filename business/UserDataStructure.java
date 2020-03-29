@@ -1,6 +1,7 @@
 package business;
 
 public class UserDataStructure {
+    private Long idUser;
     private String username;
     private String password;
     private String phoneNumber;
@@ -19,6 +20,14 @@ public class UserDataStructure {
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.passCheck = passCheck;
+    }
+    
+    public Long getIdUser(){
+        return idUser;
+    }
+    
+    public void setIdUser(Long idUser){
+        this.idUser = idUser;
     }
     
     public String getUsername(){

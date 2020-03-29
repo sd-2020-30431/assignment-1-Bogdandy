@@ -1,13 +1,20 @@
 package business;
 
-import javax.swing.JOptionPane;
+import dataaccess.ItemInformationModificationQuery;
 
-public class ModifyItemInformationRequest implements DataModificationRequestService{
+public class ModifyItemInformationRequest implements GroceryListRequestService{
 
     @Override
-    public boolean requestModification(ItemInformation data) {
-        JOptionPane.showMessageDialog(null, "MERGE2");
-        return false;
+    public boolean requestModification(ItemInformation itemInformation, UserDataStructure uSD) {
+        boolean successful = false;
+        ItemChecker itemChecker = new ItemChecker(itemInformation);
+        
+        if(itemChecker.checkItemInformation()){
+            ItemInformationModificationQuery modificationQuery = new ItemInformationModificationQuery(itemInformation, uSD);
+            successful = modificationQuery.doQuery();
+        }
+        
+        return successful;
     }
     
 }

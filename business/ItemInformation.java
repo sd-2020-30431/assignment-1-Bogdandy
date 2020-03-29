@@ -3,6 +3,7 @@ package business;
 import java.util.Date;
 
 public class ItemInformation{
+    private Long itemId;
     private String itemName;
     private Integer quantity;
     private Integer caloricValue;
@@ -19,6 +20,21 @@ public class ItemInformation{
         this.expirationDate = expirationDate;
         this.consumptionDate = consumptionDate;
         this.tableIndex = tableIndex;
+    }
+    
+    public ItemInformation(Long itemId, String itemName, Integer quantity, Integer caloricValue, Date purchaseDate, Date expirationDate, Date consumptionDate, Integer tableIndex){
+        this.itemId = itemId;
+        this.itemName = itemName;
+        this.quantity = quantity;
+        this.caloricValue = caloricValue;
+        this.purchaseDate = purchaseDate;
+        this.expirationDate = expirationDate;
+        this.consumptionDate = consumptionDate;
+        this.tableIndex = tableIndex;
+    }
+    
+    public Long getItemId(){
+        return itemId;
     }
     
     public Integer getTableIndex(){
