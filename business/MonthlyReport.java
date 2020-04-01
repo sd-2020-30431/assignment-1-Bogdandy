@@ -1,19 +1,44 @@
 package business;
 
 import dataaccess.GroceryItem;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
+import java.io.*;
+import java.text.*;
+import java.util.*;
 
 public class MonthlyReport {
-    List<GroceryItem> groceyListl;
+    private List<GroceryItem> groceryList;
+    private int calories;
         
-    public MonthlyReport createReport(){
-        //groceryList.get(0).getPurchaseDate();
-        File myObj = new File(System.getProperty("user.home") + "\\Desktop\\", "Monthly Report "+"31-3-2020"+".txt");
+    public MonthlyReport createReport(List groceryItems){
+        groceryList = groceryItems;
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm");
+        Date date = new Date();
+        
+        String Path = System.getProperty("user.home") + "\\Desktop\\" + "Monthly Report " + dateFormat.format(date) + ".txt";
+        File file = new File(Path);
+        
         try{
-            if(myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
+            if(file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+                FileWriter myWriter = new FileWriter(Path);
+                myWriter.write("Report ");
+                
+                for(int i = 1; i <= 5; i ++){
+                    calories = 0;
+                    myWriter.write("\n\nGroceryList " + i + ":");
+                    for (GroceryItem groceryItem: groceryList){
+                        if(groceryItem.getListNo() == i){
+                            myWriter.write("\n" + groceryItem.getItemName() + " " + groceryItem.getCaloricValue() + " " + groceryItem.getQuantity());
+                            calories += groceryItem.getCaloricValue();
+                        }
+                    } 
+                    myWriter.write("\nTotal Calories: "+ calories);
+                }
+               
+                
+                myWriter.close();
+                System.out.println("Successfully wrote to the file.");
             }else {
                 System.out.println("File already exists.");
             }

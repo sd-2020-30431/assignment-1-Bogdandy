@@ -6,7 +6,7 @@ import java.util.List;
 public class MonthlyReportFactory implements AbstractFactory<MonthlyReport>{
 
     @Override
-    public MonthlyReport create(String type, List<GroceryItem> groceyList) {
-        return new MonthlyReport().createReport();
+    public MonthlyReport create(String type, List<GroceryItem> groceryList) {
+        return new MonthlyReport().createReport(groceryList);
     }
 }

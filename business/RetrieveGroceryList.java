@@ -1,10 +1,12 @@
 package business;
 
-public class RetrieveGroceryList implements GroceryListRequestService{
+import dataaccess.RetrieveGroceryListQuery;
+import java.util.List;
 
-    @Override
-    public boolean requestModification(ItemInformation itemInformation, UserDataStructure uSD) {
-        return false;
+public class RetrieveGroceryList{
+
+    public List requestModification(UserDataStructure uSD) {
+        return new RetrieveGroceryListQuery(uSD).doQuery();
     }
     
 }
