@@ -1,6 +1,7 @@
 package presentation;
 
 import business.*;
+import dataaccess.GroceryItem;
 import java.text.*;
 import java.util.*;
 import java.util.logging.*;
@@ -346,7 +347,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     reportPanelLayout.setHorizontalGroup(
         reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
-            .addGap(20, 20, 20)
+            .addContainerGap()
             .addComponent(reportTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(reportsButton)
@@ -391,9 +392,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                                 .addComponent(purchaseDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGap(23, 23, 23))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionsPanelLayout.createSequentialGroup()
-                    .addComponent(groceryListOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap())
-                .addComponent(reportPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(reportPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(groceryListOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap())))
     );
     optionsPanelLayout.setVerticalGroup(
         optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -581,10 +583,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         request = new RemoveItemRequest();
         
        try{
-            ItemInformation itemInformation = new ItemInformation(itemNameField.getText(), 
-                    Integer.parseInt(quantityField.getText()),  Integer.parseInt(calorieValueField.getText()), 
-                    purchaseDateChooser.getSelectedDate().getTime(), expirationDateChooser.getSelectedDate().getTime(), 
-                    consumptionChooserCombo.getSelectedDate().getTime(), groceryListId);
+            ItemInformation itemInformation = new ItemInformation(itemId, itemNameField.getText(), 
+                Integer.parseInt(quantityField.getText()),  Integer.parseInt(calorieValueField.getText()), 
+                purchaseDateChooser.getSelectedDate().getTime(), expirationDateChooser.getSelectedDate().getTime(), 
+                consumptionChooserCombo.getSelectedDate().getTime(), groceryListId);
             
                 if(request.requestModification(itemInformation, uSD)){
                     userGroceryList.setModel(new PopulateTable(uSD, groceryListId).populateRequest()); 
@@ -598,9 +600,11 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_removeItemButtonActionPerformed
 
     private void reportsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsButtonActionPerformed
+        List<GroceryItem> groceryList = null;
+        //groceryList = new RetrieveGroceryList(uSD, groceryListId).getList();
         AbstractFactory abstractFactory;
         abstractFactory = ReportProvider.getFactory(reportChoice);
-        abstractFactory.create(reportChoice, uSD, groceryListId);
+        abstractFactory.create(reportChoice, groceryList);
     }//GEN-LAST:event_reportsButtonActionPerformed
 
     private void reportTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportTypeComboBoxActionPerformed
