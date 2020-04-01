@@ -568,14 +568,18 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_userGroceryListMouseClicked
 
     private void ClearListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearListButtonActionPerformed
-        request = new ClearListRequest();
+        int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to clear the list?");
+        if(input == 0){
+            request = new ClearListRequest();
         
-        ItemInformation itemInformation = new ItemInformation(null, null, null, null, null, null, groceryListId);
-        if(request.requestModification(itemInformation, uSD)){
-            userGroceryList.setModel(new PopulateTable(uSD, groceryListId).populateRequest()); 
-            JOptionPane.showMessageDialog(null, "Grocery list cleared!");
-        }else{
-            JOptionPane.showMessageDialog(null, "List couldn't be cleared!", "Warning", JOptionPane.WARNING_MESSAGE);
+            ItemInformation itemInformation = new ItemInformation(null, null, null, null, null, null, groceryListId);
+            
+            if(request.requestModification(itemInformation, uSD)){
+                userGroceryList.setModel(new PopulateTable(uSD, groceryListId).populateRequest()); 
+                JOptionPane.showMessageDialog(null, "Grocery list cleared!");
+            }else{
+                JOptionPane.showMessageDialog(null, "List couldn't be cleared!", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_ClearListButtonActionPerformed
 
@@ -600,7 +604,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_removeItemButtonActionPerformed
 
     private void reportsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsButtonActionPerformed
-        List<GroceryItem> groceryList = null;
+        List<GroceryItem> groceryList = new RetrieveGroceryList().requestModification(uSD);
         //groceryList = new RetrieveGroceryList(uSD, groceryListId).getList();
         AbstractFactory abstractFactory;
         abstractFactory = ReportProvider.getFactory(reportChoice);
