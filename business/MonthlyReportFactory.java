@@ -1,15 +1,12 @@
 package business;
 
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-
+import dataaccess.GroceryItem;
+import java.util.List;
 
 public class MonthlyReportFactory implements AbstractFactory<MonthlyReport>{
-    private ArrayList<ItemInformation> itemList;
 
     @Override
-    public MonthlyReport create(String type, UserDataStructure uSD, int groceryListIndex) {
-        JOptionPane.showMessageDialog(null,"Monthly Report is Being Made!");
-        return null;
+    public MonthlyReport create(String type, List<GroceryItem> groceyList) {
+        return new MonthlyReport().createReport();
     }
 }
