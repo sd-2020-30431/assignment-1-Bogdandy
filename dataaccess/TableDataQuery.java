@@ -33,8 +33,8 @@ public class TableDataQuery {
             u =(User) criteria.uniqueResult();
             tx.commit();
             
-            Set certificates = u.getGroceryItem();
-            for (Iterator iterator2 = certificates.iterator(); iterator2.hasNext();){
+            Set groceryItems = u.getGroceryItem();
+            for (Iterator iterator2 = groceryItems.iterator(); iterator2.hasNext();){
                 GroceryItem gc = (GroceryItem) iterator2.next();
                 if(gc.getListNo() == groceryListId)
                     tblModel.addRow(new Object[]{
