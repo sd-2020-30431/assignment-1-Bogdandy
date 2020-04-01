@@ -1,8 +1,8 @@
 package dataaccess;
 
 import business.*;
-import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
+import javax.persistence.OptimisticLockException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -35,13 +35,11 @@ public class ItemInformationModificationQuery {
             groceryItem.setExpirationDate(itemInformation.getExpirationDate());
             groceryItem.setConsumptionDate(itemInformation.getConsumptionDate());
             session.update(groceryItem);
-            
-            successful = true;            
+                     
             tx.commit();
-        } catch (HibernateException e) {          
+            successful = true;   
+        } catch (HibernateException | OptimisticLockException e) {          
             session.close();
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Couldn't populate table!\nCheck connection to the server.", "Warning", JOptionPane.WARNING_MESSAGE);
             return successful;
         } finally {
             session.close();

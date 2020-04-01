@@ -22,7 +22,7 @@ public class RemoveItemQuery {
         try {
             tx = session.beginTransaction();
             
-            query = session.createQuery("delete from GroceryItem where idGroceryList=:idGroceryList");
+            query = session.createSQLQuery("delete from grocerylist where idGroceryList=:idGroceryList");
             query.setParameter("idGroceryList", itemInformation.getItemId());
             
             int l = query.executeUpdate();

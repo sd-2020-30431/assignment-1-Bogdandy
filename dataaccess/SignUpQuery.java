@@ -30,7 +30,6 @@ public class SignUpQuery {
         try{
             entityManager.getTransaction().commit();
             entityManager.close();
-            entityManager.flush();
             successful = true;
         }catch(HibernateException ex){
            
