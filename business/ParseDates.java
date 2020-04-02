@@ -10,6 +10,7 @@ public class ParseDates {
         
         Calendar endCalendar = new GregorianCalendar();
         endCalendar.setTime(endDate);
+        endCalendar.add(Calendar.DATE, 1); 
  
         while (calendar.before(endCalendar)) {
             Date result = calendar.getTime();

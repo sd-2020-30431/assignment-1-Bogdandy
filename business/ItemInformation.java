@@ -12,16 +12,6 @@ public class ItemInformation{
     private Date consumptionDate;
     private Integer tableIndex;
     
-    public ItemInformation(String itemName, Integer quantity, Integer caloricValue, Date purchaseDate, Date expirationDate, Date consumptionDate, Integer tableIndex){
-        this.itemName = itemName;
-        this.quantity = quantity;
-        this.caloricValue = caloricValue;
-        this.purchaseDate = purchaseDate;
-        this.expirationDate = expirationDate;
-        this.consumptionDate = consumptionDate;
-        this.tableIndex = tableIndex;
-    }
-    
     public ItemInformation(Long itemId, String itemName, Integer quantity, Integer caloricValue, Date purchaseDate, Date expirationDate, Date consumptionDate, Integer tableIndex){
         this.itemId = itemId;
         this.itemName = itemName;
