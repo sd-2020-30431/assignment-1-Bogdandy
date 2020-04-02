@@ -3,7 +3,9 @@ package business;
 import dataaccess.GroceryItem;
 import java.io.*;
 import java.text.*;
+import java.time.YearMonth;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class WeeklyReport {
     private List<GroceryItem> groceryList;
@@ -88,6 +90,7 @@ public class WeeklyReport {
                     return x3.compareTo(x4);
                 });
                 
+                boolean notification = false;
                 for(int i = 1; i <= 5; i ++){
                     myWriter.write("\n\nGroceryList " + i + ":");
                     boolean check = true;
@@ -110,7 +113,15 @@ public class WeeklyReport {
                                     myWriter.write("\n" + reportItem.getItemName() + " " + reportItem.getQuantity() + " " + reportItem.getCalories());
                                 }else{
                                     myWriter.write("\nTotal Calories: " + calories + "\n");
-
+                                    
+                                    if(1000*7> calories){
+                                        myWriter.write("Calorie Intake too low! Please try to revise your diet.\n");
+                                        notification = true;
+                                    }else if(calories > 2800* 7){
+                                        myWriter.write("Calorie Intake too high! Please try to revise your diet.\n");
+                                        notification = true;
+                                    }    
+                                    
                                     calories = reportItem.getCalories();
                                     yearDate = reportItem.getYear();
                                     weekDate = reportItem.getCriteria();
@@ -120,18 +131,24 @@ public class WeeklyReport {
                                 }
                                 if(!it.hasNext()){
                                     myWriter.write("\nTotal Calories: " + calories + "\n");
+                                    if(1000*7> calories){
+                                        myWriter.write("Calorie Intake too low! Please try to revise your diet.\n");
+                                        notification = true;
+                                    }else if(calories > 2800* 7){
+                                        myWriter.write("Calorie Intake too high! Please try to revise your diet.\n");
+                                        notification = true;
+                                    }
                                 }
                             }
                         }
                     } 
                 }
+                if(notification){
+                    JOptionPane.showMessageDialog(null, "Daily Calorie Intake is not proper!\nPlease try to revise your diet.", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
                 
-               
                 
                 myWriter.close();
-                // System.out.println("Successfully wrote to the file.");
-            }else {
-                //System.out.println("File already exists.");
             }
         }catch(IOException e){
             return null;

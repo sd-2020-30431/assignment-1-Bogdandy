@@ -6,6 +6,7 @@ import java.text.*;
 import java.time.*;
 import java.time.temporal.IsoFields;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class MonthlyReport {
     private List<GroceryItem> groceryList;
@@ -46,7 +47,7 @@ public class MonthlyReport {
                             month = monthDate;
                             check = false;
                         }
-                        System.out.println(month + " "+ monthDate);
+                        
                         if(year == yearDate){
                             if(month != monthDate){
                                 if(check2){
@@ -89,6 +90,7 @@ public class MonthlyReport {
                     return x3.compareTo(x4);
                 });
                 
+                boolean notification = false;
                 for(int i = 1; i <= 5; i ++){
                     myWriter.write("\n\nGroceryList " + i + ":");
                     boolean check = true;
@@ -112,6 +114,16 @@ public class MonthlyReport {
                                 }else{
                                     myWriter.write("\nTotal Calories: " + calories +"\n");
                                     
+                                    YearMonth yearMonthObject = YearMonth.of(yearDate, monthDate);
+                                    int daysInMonth = yearMonthObject.lengthOfMonth();
+                                    if(1000*daysInMonth> calories){
+                                        myWriter.write("Calorie Intake too low! Please try to revise your diet.\n");
+                                        notification = true;
+                                    }else if(calories > 2800* daysInMonth){
+                                        myWriter.write("Calorie Intake too high! Please try to revise your diet.\n");
+                                        notification = true;
+                                    }
+                                    
                                     calories = reportItem.getCalories();
                                     yearDate = reportItem.getYear();
                                     monthDate = reportItem.getCriteria();
@@ -122,17 +134,24 @@ public class MonthlyReport {
                             }
                             if(!it.hasNext()){
                                     myWriter.write("\nTotal Calories: " + calories + "\n");
+                                    YearMonth yearMonthObject = YearMonth.of(yearDate, monthDate);
+                                    int daysInMonth = yearMonthObject.lengthOfMonth();
+                                    if(1000*daysInMonth> calories){
+                                        myWriter.write("Calorie Intake too low! Please try to revise your diet.\n");
+                                        notification = true;
+                                    }else if(calories > 2800* daysInMonth){
+                                        myWriter.write("Calorie Intake too high! Please try to revise your diet.\n");
+                                        notification = true;
+                                    }
                             }
                         }
                     } 
                 }
-                
-               
+                if(notification){
+                    JOptionPane.showMessageDialog(null, "Daily Calorie Intake is not proper!\nPlease try to revise your diet.", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
                 
                 myWriter.close();
-                System.out.println("Successfully wrote to the file.");
-            }else {
-                System.out.println("File already exists.");
             }
         }catch(IOException e){
             return null;
