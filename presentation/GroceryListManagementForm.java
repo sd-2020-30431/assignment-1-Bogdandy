@@ -4,24 +4,27 @@ import business.*;
 import dataaccess.GroceryItem;
 import java.text.*;
 import java.util.*;
-import java.util.logging.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class GroceryListManagementForm extends javax.swing.JFrame {
     private UserDataStructure uSD;
-    private GroceryListRequestService request = null;
+    private GroceryListWork request;
     private String reportChoice = "Weekly";
     private int groceryListId = 1;
     private Long itemId = 0L;
-    
+   
     public GroceryListManagementForm() {
         initComponents();
     }
 
     public void setup(UserDataStructure userDataStructure){
         this.uSD = userDataStructure;
-        userGroceryList.setModel(new PopulateTable(uSD, groceryListId).populateRequest()); 
+        userGroceryList.setModel(request.populateRequest(uSD, groceryListId)); 
+    }
+    
+    public void setRequest(GroceryListWork request){
+        this.request = request;
     }
     
     @SuppressWarnings("unchecked")
@@ -96,7 +99,7 @@ public class GroceryListManagementForm extends javax.swing.JFrame {
             .addGroup(searchPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchBar, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                    .addComponent(searchBar, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(searchButton)))
@@ -300,7 +303,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
         groceryListOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, groceryListOptionsPanelLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(groceryListSelector, 0, 97, Short.MAX_VALUE)
+            .addComponent(groceryListSelector, 0, 105, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(groceryListOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(ClearListButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -373,7 +376,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, optionsPanelLayout.createSequentialGroup()
                     .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(optionsPanelLayout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(itemNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(optionsPanelLayout.createSequentialGroup()
@@ -414,19 +417,25 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                 .addGroup(optionsPanelLayout.createSequentialGroup()
                     .addGap(3, 3, 3)
                     .addComponent(jLabel3)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(purchaseDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel4))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(expirationDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel5))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(consumptionChooserCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(optionsPanelLayout.createSequentialGroup()
+                    .addGap(12, 12, 12)
+                    .addComponent(jLabel4))
+                .addGroup(optionsPanelLayout.createSequentialGroup()
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(purchaseDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(optionsPanelLayout.createSequentialGroup()
+                    .addGap(6, 6, 6)
+                    .addComponent(jLabel5))
+                .addGroup(optionsPanelLayout.createSequentialGroup()
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(expirationDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)))
+            .addGap(5, 5, 5)
+            .addGroup(optionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(consumptionChooserCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel6))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(groceryListOptionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(reportPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -443,7 +452,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
                 .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(optionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(groceryListScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(groceryListScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
     );
     containerPanelLayout.setVerticalGroup(
@@ -481,12 +490,8 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        request = new SearchItemRequest();
-        
         try{
-            ItemInformation itemInformation = new ItemInformation(searchBar.getText(), null, null, null, null, null, groceryListId);
-            
-            if(request.requestModification(itemInformation, uSD)){
+            if(request.requestItemSearch(searchBar.getText(), groceryListId, uSD)){
                 JOptionPane.showMessageDialog(null, "Item Exists in the Grocey List!");
             }else{
                JOptionPane.showMessageDialog(null, "No Item Found with this Name Exists in the Grocey List!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -501,16 +506,15 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_purchaseDateChooserOnCommit
 
     private void addItemsToGroceryListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemsToGroceryListActionPerformed
-        request = new AddItemToGroceryListRequest();
         
         try{
-            ItemInformation itemInformation = new ItemInformation(itemNameField.getText(), 
+            ItemInformation itemInformation = new ItemInformation(0L, itemNameField.getText(), 
                     Integer.parseInt(quantityField.getText()),  Integer.parseInt(calorieValueField.getText()), 
                     purchaseDateChooser.getSelectedDate().getTime(), expirationDateChooser.getSelectedDate().getTime(), 
                     consumptionChooserCombo.getSelectedDate().getTime(), groceryListId);
             
-                if(request.requestModification(itemInformation, uSD)){
-                    userGroceryList.setModel(new PopulateTable(uSD, groceryListId).populateRequest()); 
+                if(request.requestItemInsertion(itemInformation, uSD)){
+                    userGroceryList.setModel(request.populateRequest(uSD, groceryListId)); 
                     JOptionPane.showMessageDialog(null, "Item Added Successfully!");
                 }else{
                     JOptionPane.showMessageDialog(null, "Item couldn't be added!\nCheck item fields!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -521,15 +525,15 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_addItemsToGroceryListActionPerformed
 
     private void modifyItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyItemButtonActionPerformed
-        request = new ModifyItemInformationRequest();
+       
         try{
             ItemInformation itemInformation = new ItemInformation(itemId, itemNameField.getText(), 
                 Integer.parseInt(quantityField.getText()),  Integer.parseInt(calorieValueField.getText()), 
                 purchaseDateChooser.getSelectedDate().getTime(), expirationDateChooser.getSelectedDate().getTime(), 
                 consumptionChooserCombo.getSelectedDate().getTime(), groceryListId);
         
-            if(request.requestModification(itemInformation, uSD)){
-                userGroceryList.setModel(new PopulateTable(uSD, groceryListId).populateRequest()); 
+            if(request.requestItemModification(itemInformation, uSD)){
+                userGroceryList.setModel(request.populateRequest(uSD, groceryListId));  
                 JOptionPane.showMessageDialog(null, "Item modified successfully!");
             }else{
                 JOptionPane.showMessageDialog(null, "Item couldn't be modified!\nCheck item fields!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -541,7 +545,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
 
     private void groceryListSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_groceryListSelectorActionPerformed
         groceryListId = groceryListSelector.getSelectedIndex() + 1;
-        userGroceryList.setModel(new PopulateTable(uSD, groceryListId).populateRequest()); 
+        userGroceryList.setModel(request.populateRequest(uSD, groceryListId));  
     }//GEN-LAST:event_groceryListSelectorActionPerformed
 
     private void userGroceryListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userGroceryListMouseClicked
@@ -563,19 +567,18 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
             consumptionChooserCombo.setSelectedDate(cal);
         
         } catch (ParseException ex) {
-            Logger.getLogger(GroceryListManagementForm.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(GroceryListManagementForm.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Item couldn't be set!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_userGroceryListMouseClicked
 
     private void ClearListButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearListButtonActionPerformed
         int input = JOptionPane.showConfirmDialog(null, "Are you sure you want to clear the list?");
         if(input == 0){
-            request = new ClearListRequest();
-        
-            ItemInformation itemInformation = new ItemInformation(null, null, null, null, null, null, groceryListId);
+            request = new GroceryListWork();
             
-            if(request.requestModification(itemInformation, uSD)){
-                userGroceryList.setModel(new PopulateTable(uSD, groceryListId).populateRequest()); 
+            if(request.requestListClear(groceryListId, uSD)){
+                userGroceryList.setModel(request.populateRequest(uSD, groceryListId));  
                 JOptionPane.showMessageDialog(null, "Grocery list cleared!");
             }else{
                 JOptionPane.showMessageDialog(null, "List couldn't be cleared!", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -584,27 +587,26 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_ClearListButtonActionPerformed
 
     private void removeItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeItemButtonActionPerformed
-        request = new RemoveItemRequest();
         
-       try{
+        try{
             ItemInformation itemInformation = new ItemInformation(itemId, itemNameField.getText(), 
                 Integer.parseInt(quantityField.getText()),  Integer.parseInt(calorieValueField.getText()), 
                 purchaseDateChooser.getSelectedDate().getTime(), expirationDateChooser.getSelectedDate().getTime(), 
                 consumptionChooserCombo.getSelectedDate().getTime(), groceryListId);
             
-                if(request.requestModification(itemInformation, uSD)){
-                    userGroceryList.setModel(new PopulateTable(uSD, groceryListId).populateRequest()); 
+                if(request.requestItemRemoval(itemInformation, uSD)){
+                    userGroceryList.setModel(request.populateRequest(uSD, groceryListId));  
                     JOptionPane.showMessageDialog(null, "Item removed");
                 }else{
-                    JOptionPane.showMessageDialog(null, "Item couldn't be removed! Check if it exists or if your connection is stable!", "Warning", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Item couldn't be removed!\nCheck if it exists or if your connection is stable!", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
         }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Item couldn't be removed!\n Check if it exists or if your connection is stable!", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Item couldn't be removed!\nCheck if it exists or if your connection is stable!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_removeItemButtonActionPerformed
 
     private void reportsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportsButtonActionPerformed
-        List<GroceryItem> groceryList = new RetrieveGroceryList().requestModification(uSD);
+        List<GroceryItem> groceryList = request.requestGroceryListData(uSD);
         //groceryList = new RetrieveGroceryList(uSD, groceryListId).getList();
         AbstractFactory abstractFactory;
         abstractFactory = ReportProvider.getFactory(reportChoice);

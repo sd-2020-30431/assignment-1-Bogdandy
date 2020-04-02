@@ -2,12 +2,18 @@ package presentation;
 
 import business.*;
 import javax.swing.JOptionPane;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class LogInForm extends javax.swing.JFrame {
     private RequestService req = null;
+    private static ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext("Config.xml"); 
     
     public LogInForm() {
         initComponents();
+    }
+    
+    public static ClassPathXmlApplicationContext getContext(){
+        return appContext;
     }
     
     @SuppressWarnings("unchecked")
@@ -126,10 +132,11 @@ public class LogInForm extends javax.swing.JFrame {
        
         
         if(req.userRequest(userDataStructure)){
-            setVisible(false);
-            GroceryListManagementForm gManagementForm = new GroceryListManagementForm();
+            GroceryListManagementForm gManagementForm = appContext.getBean("GroceryGUI", GroceryListManagementForm.class);
             gManagementForm.setup(userDataStructure);
             gManagementForm.setVisible(true);
+            appContext.close();
+            this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "LogIn Failed!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
