@@ -8,8 +8,8 @@ import org.hibernate.*;
 import org.hibernate.criterion.Expression;
 
 public class TableDataQuery {
-    private UserDataStructure data;
-    private int groceryListId;
+    private final UserDataStructure data;
+    private final int groceryListId;
     private User u;
     
     public TableDataQuery(UserDataStructure data, int groceryListId){

@@ -5,8 +5,8 @@ import org.hibernate.HibernateException;
 import business.*;
 
 public class ItemInformationInsertionQuery {
-    private ItemInformation itemInformation;
-    private UserDataStructure uSD;
+    private final ItemInformation itemInformation;
+    private final UserDataStructure uSD;
     
     public ItemInformationInsertionQuery(ItemInformation itemInformation, UserDataStructure uSD){
         this.itemInformation = itemInformation;

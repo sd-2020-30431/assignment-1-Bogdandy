@@ -7,8 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class ItemInformationModificationQuery {
-    private ItemInformation itemInformation;
-    private UserDataStructure uSD;
+    private final ItemInformation itemInformation;
+    private final UserDataStructure uSD;
     
     public ItemInformationModificationQuery(ItemInformation itemInformation, UserDataStructure uSD){
         this.itemInformation = itemInformation;

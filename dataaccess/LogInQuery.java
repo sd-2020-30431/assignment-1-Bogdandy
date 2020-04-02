@@ -5,7 +5,7 @@ import org.hibernate.criterion.Expression;
 import org.hibernate.*;
 
 public class LogInQuery {
-    private UserDataStructure data;
+    private final UserDataStructure data;
     private Session session;
     
     public LogInQuery(UserDataStructure data){

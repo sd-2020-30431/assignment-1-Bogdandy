@@ -8,11 +8,13 @@ public class SearchItemQuery {
     private Session session;
     private GroceryItem gc;
     private final UserDataStructure uSD;
-    private final ItemInformation itemInformation;
+    private final String itemName;
+    private final int tableIndex;
     
-    public SearchItemQuery(ItemInformation itemInformation, UserDataStructure uSD){
+    public SearchItemQuery(String itemName, int tableIndex, UserDataStructure uSD){
         this.uSD = uSD;
-        this.itemInformation = itemInformation;
+        this.itemName = itemName;
+        this.tableIndex = tableIndex;
     }
     public boolean doQuery(){
         Query query = null;
@@ -23,8 +25,8 @@ public class SearchItemQuery {
             tx = session.beginTransaction();
          
             Criteria criteria = session.createCriteria(GroceryItem.class);
-            criteria.add(Expression.eq("ItemName", itemInformation.getItemName()));
-            criteria.add(Expression.eq("ListNo", itemInformation.getTableIndex()));
+            criteria.add(Expression.eq("ItemName", itemName));
+            criteria.add(Expression.eq("ListNo", tableIndex));
             criteria.add(Expression.eq("idUserGroceryList", uSD.getIdUser()));
                     
             gc =(GroceryItem) criteria.uniqueResult();

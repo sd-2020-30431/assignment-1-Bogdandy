@@ -5,8 +5,8 @@ import business.UserDataStructure;
 import org.hibernate.*;
 
 public class RemoveItemQuery {
-    private ItemInformation itemInformation;
-    private UserDataStructure uSD;
+    private final ItemInformation itemInformation;
+    private final UserDataStructure uSD;
     private Session session;
     
     public RemoveItemQuery(ItemInformation itemInformation, UserDataStructure uSD){
@@ -22,8 +22,9 @@ public class RemoveItemQuery {
         try {
             tx = session.beginTransaction();
             
-            query = session.createSQLQuery("delete from grocerylist where idGroceryList=:idGroceryList");
+            query = session.createSQLQuery("delete from grocerylist where idGroceryList=:idGroceryList and idUserGroceryList=:idUserGroceryList");
             query.setParameter("idGroceryList", itemInformation.getItemId());
+            query.setParameter("idUserGroceryList", uSD.getIdUser());
             
             int l = query.executeUpdate();
             tx.commit();

@@ -5,7 +5,7 @@ import org.hibernate.HibernateException;
 import business.UserDataStructure;
 
 public class SignUpQuery {
-    private UserDataStructure data;
+    private final UserDataStructure data;
     
     public SignUpQuery(UserDataStructure data){
         this.data = data;

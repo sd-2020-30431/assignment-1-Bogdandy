@@ -4,12 +4,12 @@ import business.*;
 import org.hibernate.*;
 
 public class ClearListQuery {
-    private ItemInformation itemInformation;
-    private UserDataStructure uSD;
+    private final int tableIndex;
+    private final UserDataStructure uSD;
     private Session session;
     
-    public ClearListQuery(ItemInformation itemInformation, UserDataStructure uSD){
-        this.itemInformation = itemInformation;
+    public ClearListQuery(int tableIndex, UserDataStructure uSD){
+        this.tableIndex = tableIndex;
         this.uSD = uSD;
     }
     
@@ -21,9 +21,9 @@ public class ClearListQuery {
             session = HibernateUtil.getSessionFactory().openSession();
             tx = session.beginTransaction();
             
-            query = session.createQuery("delete from GroceryItem where ListNo = :ListNo and idUserGroceryList=:idUserGroceryList");
+            query = session.createQuery("delete from GroceryItem where ListNo=:ListNo and idUserGroceryList=:idUserGroceryList");
             query.setParameter("idUserGroceryList", uSD.getIdUser());
-            query.setParameter("ListNo", itemInformation.getTableIndex());
+            query.setParameter("ListNo", tableIndex);
             
             int l = query.executeUpdate();
             tx.commit();

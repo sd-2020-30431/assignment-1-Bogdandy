@@ -6,7 +6,7 @@ import org.hibernate.*;
 import org.hibernate.criterion.Expression;
 
 public class RetrieveGroceryListQuery {
-    private List<GroceryItem> groceryList = new ArrayList<>();
+    private final List<GroceryItem> groceryList = new ArrayList<>();
     private Session session;
     private UserDataStructure uSD;
     
