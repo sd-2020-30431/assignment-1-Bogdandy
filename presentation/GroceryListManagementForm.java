@@ -37,6 +37,7 @@ public class GroceryListManagementForm extends javax.swing.JFrame {
         searchPanel = new javax.swing.JPanel();
         searchBar = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
+        refreshButton = new javax.swing.JButton();
         optionsPanel = new javax.swing.JPanel();
         itemNameField = new javax.swing.JTextField();
         quantityField = new javax.swing.JTextField();
@@ -92,6 +93,13 @@ public class GroceryListManagementForm extends javax.swing.JFrame {
             }
         });
 
+        refreshButton.setText("Refresh");
+        refreshButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
         searchPanel.setLayout(searchPanelLayout);
         searchPanelLayout.setHorizontalGroup(
@@ -101,7 +109,8 @@ public class GroceryListManagementForm extends javax.swing.JFrame {
                 .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(searchBar, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, searchPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(refreshButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchButton)))
                 .addContainerGap())
         );
@@ -111,7 +120,9 @@ public class GroceryListManagementForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(searchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(searchButton)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchButton)
+                    .addComponent(refreshButton))
                 .addContainerGap())
         );
 
@@ -617,6 +628,10 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
          reportChoice = reportTypeComboBox.getSelectedItem().toString();
     }//GEN-LAST:event_reportTypeComboBoxActionPerformed
 
+    private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
+        userGroceryList.setModel(request.populateRequest(uSD, groceryListId));  
+    }//GEN-LAST:event_refreshButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -673,6 +688,7 @@ public void actionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JPanel optionsPanel;
     private datechooser.beans.DateChooserCombo purchaseDateChooser;
     private javax.swing.JTextField quantityField;
+    private javax.swing.JButton refreshButton;
     private javax.swing.JButton removeItemButton;
     private javax.swing.JPanel reportPanel;
     private javax.swing.JComboBox<String> reportTypeComboBox;
